@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   root to: "static_pages#index"
+
+  get "/accounts/new", to: "accounts#new", as: :new_account
+  post "/accounts", to: "accounts#create", as: :accounts
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
