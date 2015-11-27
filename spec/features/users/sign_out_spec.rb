@@ -1,14 +1,14 @@
 require 'rails_helper'
 describe "The signout process", :type => :feature do
   before :each do
-    @account = FactoryGirl.create(:account)
+    @user = FactoryGirl.create(:user)
   end
 
   it "signs me in" do
-    visit '/accounts/sign_in'
-    within("#new_account") do
-      fill_in 'Email', :with => @account.email
-      fill_in 'Password', :with => @account.password
+    visit '/users/sign_in'
+    within("#new_user") do
+      fill_in 'Email', :with => @user.email
+      fill_in 'Password', :with => @user.password
     end
     click_button 'Log in'
     click_link 'Logout'
