@@ -1,11 +1,20 @@
+require 'subdomain_required'
+
 Rails.application.routes.draw do
-  resources :websites
   devise_for :users
-  resources :users
+  # resources :users
+
+  constraints(SubdomainRequired) do
+    scope module: "accounts" do
+      root to: "websites#index", as: :account_root
+      resources :websites
+    end
+  end
   root to: "static_pages#index"
 
   get "/accounts/new", to: "accounts#new", as: :new_account
   post "/accounts", to: "accounts#create", as: :accounts
+  get "signed_out", :to => "users#signed_out"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
