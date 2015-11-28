@@ -1,1 +1,6 @@
-<%= link_to('Add Website', new_website_path)  %>  
+<%= link_to('Add Website', new_website_path)  %>
+<ul>
+  <% @websites.each do |website| %>
+    <li><%= link_to website.url, website %></li>
+  <% end %>
+</ul>

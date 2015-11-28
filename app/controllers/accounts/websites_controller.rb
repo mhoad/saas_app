@@ -3,7 +3,7 @@ module Accounts
     before_action :set_website, only: [:show, :edit, :update, :destroy]
     
     def index
-      @website = Website.all
+      @websites = Website.all
     end
 
     def new
