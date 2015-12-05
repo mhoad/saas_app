@@ -1,6 +1,12 @@
-FactoryGirl.define do  factory :invitation do
+FactoryGirl.define do  
+  factory :membership do
+    account nil
+    user nil
+  end
+  
+  factory :invitation do
     email "MyString"
-account_id 1
+    account_id 1
   end
   
   factory :website do

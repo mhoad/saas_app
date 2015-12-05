@@ -6,9 +6,10 @@ module SubdomainHelpers
     default_url_options[:host] = "#{site}"
   end
 end
-RSpec.configure do |c|
-  c.include SubdomainHelpers, type: :feature
-  c.before type: :feature do
+
+RSpec.configure do |config|
+  config.include SubdomainHelpers, type: :feature
+  config.before type: :feature do
     Capybara.app_host = "http://lvh.me"
   end
 end
