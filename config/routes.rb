@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  root to: "static_pages#index"
+  root to: "home#index"
 
   get "/accounts/new", to: "accounts#new", as: :new_account
   post "/accounts", to: "accounts#create", as: :accounts

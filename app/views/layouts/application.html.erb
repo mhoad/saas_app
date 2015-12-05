@@ -9,6 +9,16 @@
 <body>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
+
+<%= link_to root_url(subdomain: nil) do %>
+  <strong>Home</strong>
+<% end %> 
+<% if current_account %>
+  <%= link_to root_url(subdomain: current_account.subdomain) do %>
+    <strong><%= current_account.name %></strong>
+  <% end %>
+<% end %>
+
 <% if user_signed_in? %>
   <li>
   Signed in as <%= current_user.email %>
