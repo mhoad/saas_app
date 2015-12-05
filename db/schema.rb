@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151205161713) do
+ActiveRecord::Schema.define(version: 20151205192501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,8 +68,12 @@ ActiveRecord::Schema.define(version: 20151205161713) do
     t.text     "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "account_id"
   end
+
+  add_index "websites", ["account_id"], name: "index_websites_on_account_id", using: :btree
 
   add_foreign_key "memberships", "accounts"
   add_foreign_key "memberships", "users"
+  add_foreign_key "websites", "accounts"
 end
