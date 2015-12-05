@@ -17,13 +17,35 @@ feature "Websites" do
       expect(page).to have_content("http://www.google.com")
       expect(page).to_not have_content("http://www.amazon.com")
     end
-    
+
     scenario "displays only account B's website" do
       set_subdomain(account_b.subdomain)
       login_as(account_b.owner)
       visit root_url
       expect(page).to have_content("http://www.amazon.com")
       expect(page).to_not have_content("http://www.google.com")
+    end
+  end
+
+  context "show" do
+    context "when signed in as account A's owner" do
+      before do
+        login_as(account_a.owner)
+        set_subdomain(account_a.subdomain)
+      end
+
+      it "can see Account A's website" do
+        website = account_a.websites.first
+        visit website_url(website)
+        expect(page).to have_content(website.url)
+      end
+
+      it "cannot see Account B's website" do
+        website = account_b.websites.first
+        visit website_url(website)
+        expect(page).to have_content('The website you were looking for cannot be found.')
+        expect(page.current_url).to eq(root_url)
+      end
     end
   end
 end

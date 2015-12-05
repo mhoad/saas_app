@@ -11,7 +11,8 @@ module Accounts
     end
 
     def create
-      @website = Website.new(website_params)
+      @website = current_account.websites.build(website_params)
+      # @website = Website.new(website_params)
 
       if @website.save
         flash[:notice] = "Website has been successfully saved"
@@ -53,10 +54,10 @@ module Accounts
       end
 
       def set_website
-        @website = Website.find(params[:id])
+        @website = current_account.websites.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         flash[:alert] = "The website you were looking for cannot be found."
-        redirect_to websites_path
+        redirect_to root_url
       end
   end
 end
