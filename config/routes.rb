@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     scope module: "accounts" do
       root to: "websites#index", as: :account_root
       resources :websites
+      resources :invitations, only: [:new, :create]
     end
   end
   root to: "static_pages#index"

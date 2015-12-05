@@ -1,4 +1,8 @@
-FactoryGirl.define do  
+FactoryGirl.define do  factory :invitation do
+    email "MyString"
+account_id 1
+  end
+  
   factory :website do
     url "http://www.website.com/"
   end
