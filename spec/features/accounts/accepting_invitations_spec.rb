@@ -11,6 +11,7 @@ feature "Accepting invitations" do
 
   before do
     InvitationMailer.invite(invitation).deliver_now
+    set_subdomain(account.subdomain)
   end
 
   scenario "accepts an invitation" do
